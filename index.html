@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Portfolio — Asmo Tegar Nada Satria, S.Pd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080808;
+  --bg2:#101010;
+  --bg3:#161616;
+  --bg4:#1C1C1C;
+  --bg5:#222;
+  --gold:#B8943E;
+  --gold2:#CDA94E;
+  --gold3:#E2C06A;
+  --border:rgba(184,148,62,0.15);
+  --border2:rgba(184,148,62,0.3);
+  --border3:rgba(184,148,62,0.5);
+  --text:#E0DDD6;
+  --text2:#A8A49C;
+  --text3:#686460;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --nav-h:64px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ========= NAV ========= */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--nav-h);display:flex;align-items:center;
+  transition:background .3s,border-color .3s;
+  border-bottom:.5px solid transparent;
+}
+#nav.solid{background:rgba(8,8,8,.97);border-color:var(--border)}
+.nav-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--serif);font-size:20px;color:var(--gold2);letter-spacing:.5px;cursor:pointer;text-decoration:none}
+.nav-logo small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text3);margin-top:-2px}
+.nav-menu{display:flex;gap:0;list-style:none}
+.nav-menu li a{
+  display:block;padding:0 18px;height:var(--nav-h);line-height:var(--nav-h);
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text3);text-decoration:none;cursor:pointer;
+  transition:color .2s;border-right:.5px solid transparent;
+  position:relative;
+}
+.nav-menu li a::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.nav-menu li a:hover,.nav-menu li a.active{color:var(--gold2)}
+.nav-menu li a:hover::after,.nav-menu li a.active::after{transform:scaleX(1)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.nav-ham span{display:block;width:22px;height:1.5px;background:var(--text2);transition:.3s}
+
+/* ========= PAGE SYSTEM ========= */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h)}
+.page.active{display:block}
+
+/* ========= HERO ========= */
+.hero{
+  min-height:calc(100vh - var(--nav-h));
+  display:grid;grid-template-columns:1fr 360px;gap:80px;
+  align-items:center;max-width:1200px;margin:0 auto;padding:60px 40px;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;right:280px;top:0;bottom:0;
+  width:.5px;background:linear-gradient(to bottom,transparent,var(--border) 20%,var(--border) 80%,transparent);
+  pointer-events:none;
+}
+.h-eye{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.h-eye-line{width:36px;height:.5px;background:var(--gold)}
+.h-eye span{font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
+.h-name{font-family:var(--serif);font-size:clamp(56px,7vw,96px);font-weight:600;line-height:.95;color:#fff;margin-bottom:6px}
+.h-name em{display:block;font-style:italic;color:var(--gold2)}
+.h-role{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--text3);margin-bottom:44px}
+.h-bio{color:var(--text2);font-size:14px;line-height:1.9;max-width:480px;margin-bottom:44px}
+.h-tags{display:flex;flex-wrap:wrap;gap:8px}
+.h-tag{border:.5px solid var(--border2);padding:7px 16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2)}
+.hero-photo{position:relative}
+.hero-frame{
+  aspect-ratio:3/4;border:.5px solid var(--border2);background:var(--bg3);
+  overflow:hidden;position:relative;
+}
+.hero-frame::before{content:'';position:absolute;inset:10px;border:.5px solid var(--border);z-index:2;pointer-events:none}
+.photo-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.photo-ph svg{width:48px;height:48px;stroke:var(--text3);stroke-width:1;fill:none}
+.photo-ph span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
+.hero-badge{
+  position:absolute;bottom:24px;left:-1px;
+  background:var(--bg);border:.5px solid var(--border2);border-left:2px solid var(--gold);
+  padding:10px 20px;
+}
+.hero-badge p{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-bottom:2px}
+.hero-badge span{font-size:12px;color:var(--text2)}
+.hero-corner{position:absolute;top:-14px;right:-14px;width:70px;height:70px;border-top:.5px solid var(--border2);border-right:.5px solid var(--border2)}
+
+/* ========= PAGE HEADER ========= */
+.pg-head{
+  border-bottom:.5px solid var(--border);
+  padding:60px 40px 50px;
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:flex-end;gap:40px;
+}
+.pg-num{font-family:var(--serif);font-size:100px;line-height:1;color:rgba(184,148,62,.06);font-weight:600;flex-shrink:0;margin-bottom:-12px}
+.pg-meta{}
+.pg-eye{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.pg-title{font-family:var(--serif);font-size:clamp(30px,4vw,52px);color:#fff;font-weight:500;line-height:1.1}
+.pg-line{width:40px;height:.5px;background:var(--gold);margin-top:14px}
+
+/* ========= CONTENT WRAP ========= */
+.cw{max-width:1200px;margin:0 auto;padding:60px 40px}
+.cw+.cw{padding-top:0}
+
+/* ========= 2-COL ========= */
+.col2{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.col2.rev{direction:rtl}.col2.rev>*{direction:ltr}
+
+/* ========= TEXT ========= */
+.body-text p{color:var(--text2);font-size:14px;line-height:1.9;margin-bottom:18px}
+.body-text p strong{color:var(--text);font-weight:500}
+
+/* ========= VIDEO ========= */
+.vid-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.vid-wrap{aspect-ratio:16/9;background:var(--bg3);border:.5px solid var(--border);overflow:hidden;position:relative}
+.vid-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+/* ========= QUOTE ========= */
+.quote{
+  margin-top:32px;padding:24px 28px;
+  background:var(--bg3);border-left:2px solid var(--gold);
+  position:relative;overflow:hidden;
+}
+.quote::before{
+  content:'\201C';font-family:var(--serif);font-size:110px;
+  color:rgba(184,148,62,.05);position:absolute;top:-16px;left:12px;line-height:1;
+}
+.quote p{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--text2);line-height:1.7;position:relative}
+.quote cite{display:block;margin-top:12px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-style:normal}
+
+/* ========= INFO CARDS ========= */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info-card{background:var(--bg3);border:.5px solid var(--border);padding:18px;transition:border-color .2s}
+.info-card:hover{border-color:var(--border2)}
+.info-card svg{width:20px;height:20px;stroke:var(--gold);stroke-width:1.5;fill:none;margin-bottom:8px;display:block}
+.info-card h4{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:5px;font-weight:500}
+.info-card p{font-size:12px;color:var(--text2);line-height:1.6}
+
+/* ========= MAP ========= */
+.map-box{border:.5px solid var(--border);overflow:hidden;background:var(--bg3)}
+.map-head{padding:12px 18px;border-bottom:.5px solid var(--border);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.map-box iframe{display:block;width:100%;height:240px;border:none}
+
+/* ========= STRIP ========= */
+.strip{
+  background:var(--bg3);border:.5px solid var(--border);
+  display:flex;flex-wrap:wrap;gap:0;margin:40px 0 0;
+}
+.strip-item{flex:1;min-width:140px;padding:24px 28px;border-right:.5px solid var(--border);text-align:center}
+.strip-item:last-child{border-right:none}
+.strip-item span{display:block;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.strip-item strong{font-family:var(--serif);font-size:18px;color:#fff;font-weight:500}
+
+/* ========= FOTO GRID ========= */
+.foto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:40px}
+.foto-item{aspect-ratio:4/3;background:var(--bg3);border:.5px solid var(--border);overflow:hidden;position:relative}
+.foto-item img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:transform .5s,opacity .3s}
+.foto-item:hover img{transform:scale(1.04);opacity:1}
+.foto-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.foto-ph svg{width:28px;height:28px;stroke:var(--text3);stroke-width:1;fill:none}
+.foto-ph span{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3)}
+
+/* ========= ARTEFAK ========= */
+.artefak-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.artefak-card{background:var(--bg3);border:.5px solid var(--border);padding:24px;transition:border-color .2s,background .2s;cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:inherit;min-height:172px}
+.artefak-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.artefak-card:hover{border-color:var(--border3);background:var(--bg4)}
+.artefak-card:hover::after{transform:scaleX(1)}
+.ac-cat{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);border:.5px solid var(--border2);padding:3px 10px;display:inline-block;margin-bottom:14px}
+.ac-title{font-family:var(--serif);font-size:16px;color:#fff;margin-bottom:8px;line-height:1.35}
+.ac-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:14px}
+.ac-more{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2);margin-top:18px}
+.artefak-preview{padding:0;min-height:auto;display:flex;flex-direction:column;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.3),0 2px 4px rgba(184,148,62,.08);transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1)}.artefak-preview:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(184,148,62,.15),0 4px 8px rgba(0,0,0,.4)}.doc-preview{background:var(--bg3);border:.5px solid var(--border);border-radius:12px 12px 0 0;min-height:260px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.doc-preview iframe{width:100%;height:100%;border:none;display:block}.doc-frame{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%}.doc-icon{width:64px;height:64px;opacity:.7;transition:opacity .2s}.artefak-preview:hover .doc-icon{opacity:.95}.doc-label{position:absolute;top:10px;right:10px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:5px 10px;border-radius:4px;font-weight:600;z-index:10}.doc-info{padding:20px 16px;background:var(--bg3);border:.5px solid var(--border);border-top:none;border-radius:0 0 12px 12px;display:flex;flex-direction:column;gap:8px}.doc-title{font-family:var(--serif);font-size:15px;color:#fff;line-height:1.35;font-weight:500}.doc-cat{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600}.doc-cta{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);transition:color .2s;text-decoration:none;display:inline-block;margin-top:4px}.artefak-preview:hover .doc-cta{color:var(--gold3)}
+/* modal */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:300;align-items:center;justify-content:center;padding:24px}
+.overlay.on{display:flex}
+.modal{background:var(--bg2);border:.5px solid var(--border2);max-width:620px;width:100%;max-height:85vh;overflow-y:auto;position:relative}
+.modal-head{padding:28px 32px 20px;border-bottom:.5px solid var(--border)}
+.modal-cat{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.modal-title{font-family:var(--serif);font-size:24px;color:#fff}
+.modal-body{padding:24px 32px}
+.m-sec{margin-bottom:20px}
+.m-sec h4{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.m-sec p{font-size:13px;color:var(--text2);line-height:1.8}
+.m-div{height:.5px;background:var(--border);margin:16px 0}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;
+  background:none;border:.5px solid var(--border);color:var(--text2);font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s
+}
+.modal-close:hover{border-color:var(--border3);color:#fff}
+
+/* ========= FORM PENILAIAN ========= */
+.form-embed{border:.5px solid var(--border);overflow:hidden;margin-top:16px}
+.form-head{padding:14px 20px;border-bottom:.5px solid var(--border);background:var(--bg3);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.form-embed iframe{display:block;width:100%;height:520px;border:none}
+
+/* ========= PERANGKAT ========= */
+.video-stack{display:flex;flex-direction:column;gap:20px}
+.file-card{background:var(--bg3);border:.5px solid var(--border);padding:18px 22px;display:flex;align-items:center;gap:16px;margin-top:16px;transition:border-color .2s}
+.file-card:hover{border-color:var(--border2)}
+.file-icon{width:40px;height:40px;border:.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.file-icon svg{width:20px;height:20px;stroke:var(--gold);stroke-width:1.5;fill:none}
+.file-name{font-size:13px;color:var(--text);font-weight:400}
+.file-type{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-top:2px}
+
+/* ========= KARAKTERISTIK ========= */
+.karakter-box{background:var(--bg3);border:.5px solid var(--border);padding:28px 32px;margin-top:0}
+.karakter-box h3{font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:12px;font-weight:500}
+.karakter-box p{font-size:13px;color:var(--text2);line-height:1.9}
+.prinsip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.prinsip-card{background:var(--bg3);border:.5px solid var(--border);padding:22px 18px;text-align:center;transition:border-color .2s}
+.prinsip-card:hover{border-color:var(--border2)}
+.prinsip-num{font-family:var(--serif);font-size:40px;color:rgba(184,148,62,.15);line-height:1;margin-bottom:4px}
+.prinsip-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:500}
+.prinsip-sub{font-size:12px;color:var(--text2);line-height:1.6}
+
+/* ========= MODEL GURU ========= */
+.misi-card{background:var(--bg3);border:.5px solid var(--border);border-left:2px solid var(--gold);padding:32px 36px;margin-bottom:32px;position:relative;overflow:hidden}
+.misi-card::before{content:'\201C';font-family:var(--serif);font-size:140px;color:rgba(184,148,62,.04);position:absolute;top:-20px;left:10px;line-height:1}
+.misi-card p{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--text2);line-height:1.75;position:relative}
+.komp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px}
+.komp-card{background:var(--bg3);border:.5px solid var(--border);padding:22px;transition:border-color .2s}
+.komp-card:hover{border-color:var(--border2)}
+.komp-n{font-family:var(--serif);font-size:44px;color:rgba(184,148,62,.12);line-height:1;margin-bottom:2px}
+.komp-t{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:500}
+.komp-d{font-size:12px;color:var(--text2);line-height:1.65}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.vtag{border:.5px solid var(--border2);padding:6px 16px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)}
+
+/* ========= STEM ========= */
+.stem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:32px 0}
+.stem-card{background:var(--bg3);border:.5px solid var(--border);padding:20px 16px;text-align:center;position:relative;overflow:hidden;transition:border-color .2s}
+.stem-card:hover{border-color:var(--border2)}
+.stem-letter{font-family:var(--serif);font-size:64px;font-weight:600;color:rgba(184,148,62,.08);line-height:1;position:absolute;top:-6px;right:8px}
+.stem-abbr{font-family:var(--serif);font-size:28px;color:var(--gold2);margin-bottom:6px}
+.stem-word{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.stem-desc{font-size:11px;color:var(--text2);line-height:1.6}
+
+/* ========= INSTRUMEN ========= */
+.instr-tabs{display:flex;gap:8px;margin-bottom:24px}
+.itab{background:none;border:.5px solid var(--border);color:var(--text2);padding:8px 22px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:var(--sans);transition:.2s}
+.itab.on{border-color:var(--gold);color:var(--gold)}
+.itab-body{display:none}
+.itab-body.on{display:block}
+.instr-item{background:var(--bg3);border:.5px solid var(--border);padding:20px 24px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.instr-item-left h4{font-size:14px;color:var(--text);font-weight:400;margin-bottom:4px}
+.instr-item-left p{font-size:12px;color:var(--text2)}
+.instr-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;border:.5px solid var(--border2);padding:4px 12px;color:var(--gold);flex-shrink:0}
+
+/* ========= FOOTER ========= */
+footer{border-top:.5px solid var(--border);padding:60px 40px 36px;max-width:1200px;margin:0 auto}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-bottom:48px}
+.foot-brand{font-family:var(--serif);font-size:36px;color:var(--gold2)}
+.foot-brand small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text3);margin-top:4px}
+.foot-q{max-width:380px;font-family:var(--serif);font-style:italic;color:var(--text2);font-size:15px;line-height:1.75}
+.foot-q cite{display:block;margin-top:8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-style:normal}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:28px;border-top:.5px solid var(--border)}
+.foot-bottom p,.foot-bottom span{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3)}
+.foot-bottom span{color:var(--gold)}
+
+/* ========= REVEAL ========= */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.rv.v{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* ========= RESPONSIVE ========= */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:0;padding:40px 24px}
+  .hero::before{display:none}
+  .hero-photo{display:none}
+  .pg-head,.cw{padding-left:24px;padding-right:24px}
+  .col2{grid-template-columns:1fr;gap:32px}
+  .col2.rev{direction:ltr}
+  .nav-menu{display:none}
+  .nav-ham{display:flex}
+  .artefak-grid,.komp-grid,.prinsip-grid,.stem-grid{grid-template-columns:1fr}
+  .foto-grid{grid-template-columns:1fr 1fr}
+  .strip-item{min-width:120px}
+  .foot-top{flex-direction:column}
+  footer{padding:48px 24px 28px}
+}
+@media(max-width:560px){
+  .foto-grid{grid-template-columns:1fr}
+  .info-grid{grid-template-columns:1fr}
+  .instr-tabs{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-wrap">
+    <a class="nav-logo" onclick="goPage('home')">
+      Asmo Tegar Nada Satria, S.Pd
+      <small>E-Portfolio PPG 2026</small>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a onclick="goPage('home')" data-page="home">Profil</a></li>
+      <li><a onclick="goPage('karakteristik')" data-page="karakteristik">Karakteristik</a></li>
+      <li><a onclick="goPage('artefak')" data-page="artefak">Artefak</a></li>
+      <li><a onclick="goPage('perangkat')" data-page="perangkat">Perangkat</a></li>
+      <li><a onclick="goPage('model')" data-page="model">Model Guru</a></li>
+      <li><a onclick="goPage('instrumen')" data-page="instrumen">Instrumen</a></li>
+    </ul>
+    <div class="nav-ham" onclick="toggleMob()" id="ham">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div id="mobNav" style="display:none;position:fixed;top:64px;left:0;right:0;background:rgba(8,8,8,.98);z-index:190;border-bottom:.5px solid var(--border);padding:16px 0">
+  <a onclick="goPage('home');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none;border-bottom:.5px solid var(--border)">Profil</a>
+  <a onclick="goPage('karakteristik');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none;border-bottom:.5px solid var(--border)">Karakteristik</a>
+  <a onclick="goPage('artefak');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none;border-bottom:.5px solid var(--border)">Artefak</a>
+  <a onclick="goPage('perangkat');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none;border-bottom:.5px solid var(--border)">Perangkat</a>
+  <a onclick="goPage('model');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none;border-bottom:.5px solid var(--border)">Model Guru</a>
+  <a onclick="goPage('instrumen');closeMob()" style="display:block;padding:14px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text2);text-decoration:none">Instrumen</a>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE: HOME / E-PORTFOLIO                                      -->
+<!-- ============================================================ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div>
+      <div class="h-eye rv"><div class="h-eye-line"></div><span>Pendidikan Profesi Guru · Kemendikdasmen 2026</span></div>
+      <div class="h-name rv d1">Asmo Tegar<em>Nada Satria, S.Pd</em></div>
+      <div class="h-role rv d1">Calon Guru Profesional PJOK · SMA Laboratorium UM</div>
+      <p class="h-bio rv d2">Lahir dari tanah <strong>Kecamatan Turen, Kabupaten Malang, Jawa Timur</strong> — Kabupaten Malang sangat populer dengan julukan "Kabupaten Seribu Pantai" karena memiliki deretan pesisir menawan di sepanjang pesisir selatannya. Tumbuh dalam lingkungan yang kaya akan nilai budaya dan kebersamaan membentuk keyakinan bahwa ilmu yang disampaikan dengan ketulusan akan menjadi sumber manfaat yang berkelanjutan bagi banyak orang. Prinsip tersebut sejalan dengan nilai kehidupan yang saya pegang, bahwa ‘Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lainnya.'</p>
+      <div class="h-tags rv d2">
+        <div class="h-tag">Kabupaten Malang, Jawa Timur</div>
+        <div class="h-tag">Univ. Insan Budi Utomo</div>
+        <div class="h-tag">PJOK · PPG 2026</div>
+      </div>
+    </div>
+    <div class="hero-photo rv d2">
+      <div class="hero-corner"></div>
+      <div class="hero-frame">
+        <img src="https://lh3.googleusercontent.com/d/1Y-hhRKInVblRC8DaUzyVUKrSqcrrCELl=w1000" alt="Foto Profil Asmo Tegar Nada Satria, S.Pd" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div class="hero-badge"><p>Mahasiswa PPG</p><span>Angkatan 2026</span></div>
+    </div>
+  </div>
+
+  <!-- PROFIL SECTION -->
+  <div style="border-top:.5px solid var(--border)">
+    <div class="cw">
+      <div class="col2">
+        <div class="rv body-text">
+          <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px">Perkenalan Diri & Keunikan Daerah Asal</div>
+          <p>Perkenalkan, nama saya <strong>Asmo Tegar Nada Satria, S.Pd</strong>, mahasiswa yang berasal dari <strong>Kecamatan Turen, Kabupaten Malang, Jawa Timur</strong>. Kabupaten Malang dikenal dengan julukan <strong>“Bumi Kanjuruhan”</strong> sebagai warisan sejarah kerajaan tertua di Jawa Timur, serta memiliki kekayaan alam, budaya, dan semangat kebersamaan yang menjadi identitas masyarakatnya.</p>
+
+<p>Tumbuh di lingkungan Kecamatan Turen yang menjunjung tinggi nilai budaya, gotong royong, dan pendidikan membentuk keyakinan dalam diri saya bahwa ilmu yang disampaikan dengan ketulusan akan menjadi sumber manfaat yang berkelanjutan bagi banyak orang. Nilai tersebut sejalan dengan prinsip hidup yang saya pegang: <em>“Sebaik-baik manusia adalah yang paling bermanfaat bagi manusia lainnya.”</em></p>
+
+<p>Sejak kecil, saya terinspirasi oleh sosok para pendidik yang tidak hanya mengajarkan ilmu pengetahuan, tetapi juga menanamkan karakter, kedisiplinan, dan semangat untuk terus berkembang. Bagi saya, guru bukan sekadar profesi, melainkan peran penting dalam membentuk masa depan generasi muda.</p>
+
+<p>Saya berkomitmen untuk terus belajar, mengembangkan kemampuan diri, serta menciptakan proses pembelajaran yang inovatif, aktif, dan bermakna. Saya percaya bahwa pendidikan yang baik tidak hanya membuat peserta didik memahami materi, tetapi juga mampu membangun rasa percaya diri, karakter, dan semangat belajar sepanjang hayat.</p>
+
+<div class="quote">
+  <p>"Guru yang baik bukan hanya yang mampu menyampaikan ilmu, tetapi juga yang mampu menginspirasi, membimbing, dan menghadirkan ketulusan dalam setiap proses pembelajaran."</p>
+</div>            <cite>— Asmo Tegar Nada Satria, S.Pd</cite>
+          </div>
+        </div>
+        <div class="rv d1">
+          <div class="vid-label">Video Perkenalan Asal Daerah</div>
+          <div class="vid-wrap" style="display:flex;align-items:center;justify-content:center;">
+            <a href="https://youtu.be/WYvjAvWVXHc" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+              <img src="https://img.youtube.com/vi/WYvjAvWVXHc/hqdefault.jpg" alt="Video Perkenalan Asal Daerah Asmo Tegar Nada Satria, S.Pd" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </a>
+          </div>
+          <p style="margin-top:10px;color:var(--text2);font-size:13px;">Video embedding YouTube tidak tersedia untuk link ini. Klik gambar untuk membuka video di YouTube.</p>
+
+          <div style="margin-top:20px">
+            <div class="vid-label">Masjid Tiban — Kecamatan Turen</div>
+            <div class="vid-wrap" style="display:flex;align-items:center;justify-content:center;">
+              <a href="https://youtu.be/VB7QHJnbmig" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+                <img src="https://img.youtube.com/vi/VB7QHJnbmig/hqdefault.jpg" alt="Video Masjid Tiban Kecamatan Turen" style="width:100%;height:100%;object-fit:cover;display:block;">
+              </a>
+            </div>
+            <p style="margin-top:10px;color:var(--text2);font-size:13px;">Video embedding YouTube tidak tersedia untuk link ini. Klik gambar untuk membuka video di YouTube.</p>
+          </div>
+
+          <div class="info-grid" style="margin-top:16px">
+            <div class="info-card">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2C8.1 2 5 5.1 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+              </svg>
+              <h4>Masjid Tiban Turen</h4>
+              <p>Ikon religi dan wisata spiritual di Kecamatan Turen yang terkenal dengan arsitektur megah serta proses pembangunan yang penuh cerita unik.</p>
+            </div>
+
+            <div class="info-card">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3L2 12h3v9h6v-5h2v5h6v-9h3z"/>
+              </svg>
+              <h4>Pantai Selatan Malang</h4>
+              <p>Kabupaten Malang dikenal memiliki deretan pantai selatan yang indah dengan panorama alam eksotis dan menjadi daya tarik wisata unggulan.</p>
+            </div>
+          </div>
+
+          <div class="map-box" style="margin-top:12px">
+            <div class="map-head">Lokasi · Kecamatan Turen, Kabupaten Malang</div>
+            <iframe src="https://maps-api-ssl.google.com/maps?hl=id&ll=-8.166667,112.683333&output=embed&q=-8.166667,112.683333&z=12" loading="lazy" title="Peta Kecamatan Turen"></iframe>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;">
+            <a href="https://maps.app.goo.gl/mVQkjLEFmFY1PXPx5" target="_blank" rel="noopener noreferrer" style="background:var(--bg3);border:.5px solid var(--border);padding:18px;display:block;text-decoration:none;color:var(--text);border-radius:8px;transition:border-color .2s,background .2s;">
+              <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Navigasi</div>
+              <div style="font-family:var(--serif);font-size:16px;color:#fff;font-weight:500;margin-bottom:4px">SMA Laboratorium UM</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.6;">Jl. Bromo No.16, Kauman, Klojen, Kota Malang, Jawa Timur 65119</div>
+            </a>
+            <a href="https://maps.app.goo.gl/Y76Yfp7hfqfpDrix6" target="_blank" rel="noopener noreferrer" style="background:var(--bg3);border:.5px solid var(--border);padding:18px;display:block;text-decoration:none;color:var(--text);border-radius:8px;transition:border-color .2s,background .2s;">
+              <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Navigasi</div>
+              <div style="font-family:var(--serif);font-size:16px;color:#fff;font-weight:500;margin-bottom:4px">Universitas Insan Budi Utomo Malang</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.6;">Jl. Citandui No.46, Purwantoro, Kec. Blimbing, Kota Malang, Jawa Timur 65126</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PPL STRIP -->
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px 60px">
+    <div class="strip rv">
+      <div class="strip-item">
+        <span>Program</span>
+        <strong>PPG Kemendikdasmen</strong>
+      </div>
+
+      <div class="strip-item">
+        <span>Universitas</span>
+        <strong>Universitas Insan Budi Utomo</strong>
+      </div>
+
+      <div class="strip-item">
+        <span>Sekolah</span>
+        <strong>SMA Laboratorium UM</strong>
+      </div>
+
+      <div class="strip-item">
+        <span>Bidang</span>
+        <strong>PJOK</strong>
+      </div>
+
+      <div class="strip-item">
+        <span>Nama</span>
+        <strong>Asmo Tegar Nada Satria, S.Pd</strong>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-top">
+      <div class="foot-brand">
+        Asmo Tegar Nada Satria, S.Pd
+        <small>E-Portfolio Mahasiswa PPG</small>
+      </div>
+
+      <div class="foot-q">
+        "Mendidik bukan hanya tentang menyampaikan ilmu, tetapi juga menanamkan karakter, semangat, dan inspirasi bagi masa depan."
+        <cite>— Asmo Tegar Nada Satria, S.Pd</cite>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+  </footer>
+</div>
+<!-- ============================================================ -->
+<!-- PAGE: KARAKTERISTIK                                           -->
+<!-- ============================================================ -->
+<div class="page" id="page-karakteristik">
+  <div class="pg-head">
+    <div class="pg-num rv">02</div>
+    <div class="pg-meta rv d1">
+      <div class="pg-eye">Peserta Didik</div>
+      <h1 class="pg-title">Karakteristik Peserta Didik</h1>
+      <div class="pg-line"></div>
+    </div>
+  </div>
+
+  <div class="cw">
+    <div class="col2">
+      <div>
+        <div class="vid-label rv">Video Profil SMA LAB UM — Part 1</div>
+        <div class="vid-wrap rv" style="display:flex;align-items:center;justify-content:center;">
+          <a href="https://youtu.be/9h1cY0NNipk" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+            <img src="https://img.youtube.com/vi/9h1cY0NNipk/hqdefault.jpg" alt="Video Profil SMA LAB UM — Part 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </a>
+        </div>
+        <p style="margin-top:10px;color:var(--text2);font-size:13px;">Video embedding YouTube tidak tersedia untuk link ini. Klik gambar untuk membuka video di YouTube.</p>
+
+        <div style="margin-top:16px">
+          <div class="vid-label rv">Video Karakteristik Peserta Didik — Part 2</div>
+          <div class="vid-wrap rv" style="display:flex;align-items:center;justify-content:center;">
+            <a href="https://youtu.be/6xO-aoAoDP0" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+              <img src="https://img.youtube.com/vi/6xO-aoAoDP0/hqdefault.jpg" alt="Video Karakteristik Peserta Didik — Part 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </a>
+          </div>
+          <p style="margin-top:10px;color:var(--text2);font-size:13px;">Video embedding YouTube tidak tersedia untuk link ini. Klik gambar untuk membuka video di YouTube.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="karakter-box rv">
+          <h3>Karakteristik Peserta Didik SMA Laboratorium UM</h3>
+
+          <p>
+            Peserta didik kelas XI SMA Laboratorium UM memiliki karakter aktif,
+            adaptif, dan mampu bekerja sama dalam proses pembelajaran.
+            Dalam pembelajaran PJOK khususnya materi <strong style="color:var(--text)">bulutangkis</strong>,
+            peserta didik menunjukkan antusiasme tinggi terhadap aktivitas praktik,
+            kompetisi sehat, serta pengembangan keterampilan gerak.
+          </p>
+
+          <p style="margin-top:14px">
+            Peserta didik memiliki kemampuan motorik yang beragam, sehingga pembelajaran
+            dirancang menggunakan pendekatan diferensiasi agar setiap siswa dapat berkembang
+            sesuai potensi masing-masing. Selain itu, mereka cenderung lebih mudah memahami
+            materi melalui demonstrasi langsung, praktik berulang, dan pembelajaran kolaboratif.
+          </p>
+
+          <p style="margin-top:14px">
+            Dalam kegiatan pembelajaran bulutangkis, peserta didik menunjukkan sikap sportif,
+            disiplin, percaya diri, dan mampu bekerja sama dengan baik saat melakukan latihan
+            maupun permainan. Karakter tersebut menjadi modal penting dalam membangun pembelajaran
+            yang aktif, menyenangkan, dan bermakna.
+          </p>
+        </div>
+
+        <div class="prinsip-grid" style="margin-top:16px">
+
+          <div class="prinsip-card rv">
+            <div class="prinsip-num">I</div>
+            <div class="prinsip-title">Aktif</div>
+            <div class="prinsip-sub">
+              Antusias mengikuti pembelajaran praktik dan berani mencoba teknik baru dalam permainan bulutangkis
+            </div>
+          </div>
+
+          <div class="prinsip-card rv d1">
+            <div class="prinsip-num">II</div>
+            <div class="prinsip-title">Kolaboratif</div>
+            <div class="prinsip-sub">
+              Mampu bekerja sama, berdiskusi, dan memberi dukungan kepada teman saat latihan maupun pertandingan
+            </div>
+          </div>
+
+          <div class="prinsip-card rv d2">
+            <div class="prinsip-num">III</div>
+            <div class="prinsip-title">Sportif</div>
+            <div class="prinsip-sub">
+              Menunjukkan sikap disiplin, jujur, dan bertanggung jawab dalam setiap aktivitas pembelajaran
+            </div>
+          </div>
+
+        </div>
+
+        <div class="karakter-box rv" style="margin-top:16px">
+          <h3 style="font-size:18px">Karakter Pembelajaran</h3>
+
+          <p>
+            Peserta didik memiliki gaya belajar yang lebih efektif melalui praktik langsung,
+            demonstrasi teknik, serta aktivitas permainan yang melibatkan gerak aktif.
+            Oleh karena itu, pembelajaran bulutangkis dirancang interaktif dengan pendekatan
+            latihan bertahap agar mampu meningkatkan keterampilan teknik, kebugaran jasmani,
+            dan rasa percaya diri peserta didik.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: ARTEFAK                                                 -->
+<!-- ============================================================ -->
+<div class="page" id="page-artefak">
+
+  <div class="pg-head">
+    <div class="pg-num rv">03</div>
+
+    <div class="pg-meta rv d1">
+      <div class="pg-eye">Dokumentasi Pembelajaran</div>
+      <h1 class="pg-title">
+        Artefak Produk Rencana<br>
+        Perangkat Pembelajaran
+      </h1>
+      <div class="pg-line"></div>
+    </div>
+  </div>
+
+  <div class="cw">
+
+    <!-- Form Penilaian -->
+    <div class="rv" style="margin-bottom:48px">
+
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px">
+        Tes Diagnostik
+      </div>
+
+      <div class="form-embed">
+        <div class="form-head">Tes Diagnostik Bulutangkis</div>
+
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd1Hs6XTj_hvUdD8qdczdZ63UW5v4jp-2ec65dhPr4WzIHnEA/viewform?embedded=true"
+          title="Tes Diagnostik Bulutangkis"
+          loading="lazy">
+        </iframe>
+
+      </div>
+    </div>
+
+    <!-- Modul Ajar -->
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px"
+      class="rv">
+      Modul Ajar
+    </div>
+
+    <div class="col2 rv">
+
+      <div>
+        <div class="vid-label">Video Pembelajaran — Bulutangkis</div>
+
+        <div class="vid-wrap" style="display:flex;align-items:center;justify-content:center;">
+          <a href="https://youtu.be/1aMU8Njprnc" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+            <img src="https://img.youtube.com/vi/1aMU8Njprnc/hqdefault.jpg" alt="Video Pembelajaran Bulutangkis" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </a>
+        </div>
+        <p style="margin-top:10px;color:var(--text2);font-size:13px;">Video embedding YouTube tidak tersedia untuk link ini. Klik gambar untuk membuka video di YouTube.</p>
+
+        <a href="https://drive.google.com/drive/folders/1wKr_wGLN_8J4-hxfr8Ia5MbIjhLLH9a4?usp=sharing" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+          <div class="file-card" style="margin-top:16px">
+
+            <div class="file-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+
+            <div>
+              <div class="file-name">Akses Folder Modul Ajar</div>
+              <div class="file-type">Google Drive · Koleksi PDF Pembelajaran</div>
+            </div>
+
+          </div>
+        </a>
+      </div>
+
+      <div>
+
+        <div class="artefak-grid" style="margin-top:0">
+
+          <div class="artefak-card artefak-preview">
+            <div class="doc-preview">
+              <iframe src="https://drive.google.com/file/d/1B9bMWMyZSDWueggwPf2JAWSoEasSgDag/preview" title="Asmo_RPP_Bultang_XI_Pertemuan_1"></iframe>
+            </div>
+            <div class="doc-info"><div class="doc-cat">Modul Ajar</div><div class="doc-title">Asmo_RPP_Bultang_XI_Pertemuan_1</div><a href="https://drive.google.com/file/d/1B9bMWMyZSDWueggwPf2JAWSoEasSgDag/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-cta">Buka Dokumen →</a></div>
+          </div>
+
+          <div class="artefak-card artefak-preview">
+            <div class="doc-preview">
+              <iframe src="https://drive.google.com/file/d/1XAQSDUi10_p9hUSfFzuwdRWMHAQnXXB6/preview" title="Asmo_RPP_Bultang_XI_Pertemuan_2"></iframe>
+            </div>
+            <div class="doc-info"><div class="doc-cat">Modul Ajar</div><div class="doc-title">Asmo_RPP_Bultang_XI_Pertemuan_2</div><a href="https://drive.google.com/file/d/1XAQSDUi10_p9hUSfFzuwdRWMHAQnXXB6/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-cta">Buka Dokumen →</a></div>
+          </div>
+
+          <div class="artefak-card artefak-preview">
+            <div class="doc-preview">
+              <iframe src="https://drive.google.com/file/d/1nKNYhmPLkADLBMbtPivAe3--_k43nK_y/preview" title="Asmo_RPP_Bultang_XI_Pertemuan_3"></iframe>
+            </div>
+            <div class="doc-info"><div class="doc-cat">Modul Ajar</div><div class="doc-title">Asmo_RPP_Bultang_XI_Pertemuan_3</div><a href="https://drive.google.com/file/d/1nKNYhmPLkADLBMbtPivAe3--_k43nK_y/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-cta">Buka Dokumen →</a></div>
+          </div>
+
+          <div class="artefak-card artefak-preview">
+            <div class="doc-preview">
+              <iframe src="https://drive.google.com/file/d/1IWE4ixsiB7_9F_ml1EA35Xx1YKxP_Xam/preview" title="Lampiran 7 PPL"></iframe>
+            </div>
+            <div class="doc-info"><div class="doc-cat">Penilaian GP & DPL</div><div class="doc-title">Lampiran 7 PPL</div><a href="https://drive.google.com/file/d/1IWE4ixsiB7_9F_ml1EA35Xx1YKxP_Xam/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-cta">Buka Dokumen →</a></div>
+          </div>
+
+          <div class="artefak-card artefak-preview">
+            <div class="doc-preview">
+              <iframe src="https://drive.google.com/file/d/1nz-5lvV8nb8rR5E0kUlUt8F0bRRKoiU4/preview" title="Lampiran 8 PPL PPG"></iframe>
+            </div>
+            <div class="doc-info"><div class="doc-cat">Penilaian GP & DPL</div><div class="doc-title">Lampiran 8 PPL PPG</div><a href="https://drive.google.com/file/d/1nz-5lvV8nb8rR5E0kUlUt8F0bRRKoiU4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="doc-cta">Buka Dokumen →</a></div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+  </footer>
+
+</div>
+<!-- ============================================================ -->
+<!-- PAGE: PERANGKAT PEMBELAJARAN                                  -->
+<!-- ============================================================ -->
+<div class="page" id="page-perangkat">
+  <div class="pg-head">
+    <div class="pg-num rv">04</div>
+    <div class="pg-meta rv d1">
+      <div class="pg-eye">Media & Bahan Ajar</div>
+      <h1 class="pg-title">Perangkat Pembelajaran PJOK</h1>
+      <div class="pg-line"></div>
+    </div>
+  </div>
+  <div class="cw">
+    <div class="col2">
+      <div class="video-stack rv">
+        <div>
+          <div class="vid-label">Video Pembelajaran PJOK — Part 1</div>
+          <div class="vid-wrap">
+            <a href="https://youtu.be/5WxVNRu7I_I" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+              <img src="https://img.youtube.com/vi/5WxVNRu7I_I/hqdefault.jpg" alt="Video Pembelajaran PJOK — Part 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </a>
+          </div>
+          <p style="margin-top:10px;color:var(--text2);font-size:13px;">Klik gambar untuk membuka video di YouTube.</p>
+        </div>
+        <div>
+          <div class="vid-label">Video Pembelajaran PJOK — Part 2</div>
+          <div class="vid-wrap">
+            <a href="https://youtu.be/a7ajExQKOvY" target="_blank" rel="noopener noreferrer" style="display:block;width:100%;height:100%;text-decoration:none;">
+              <img src="https://img.youtube.com/vi/a7ajExQKOvY/hqdefault.jpg" alt="Video Pembelajaran PJOK — Part 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </a>
+          </div>
+          <p style="margin-top:10px;color:var(--text2);font-size:13px;">Klik gambar untuk membuka video di YouTube.</p>
+        </div>
+      </div>
+      <div class="rv d1">
+        <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px">Berkas Perangkat</div>
+        <a href="https://docs.google.com/presentation/d/1d1ak4UPSHftBjFLURf5MFiqAoOxfapUw/edit?slide=id.p1#slide=id.p1" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+          <div class="file-card">
+            <div class="file-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div><div class="file-name">Teknik Memegang Raket (Grip) dan Footwork </div><div class="file-type">PowerPoint · .pptx</div></div>
+          </div>
+        </a>
+        <a href="https://drive.google.com/file/d/1v6XoOvdmNalDgm8lMfw2XgHGWyaoCBZF/view?usp=drive_link" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+          <div class="file-card" style="margin-top:10px">
+            <div class="file-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div><div class="file-name">Modul Unit 1 — Teknik Memegang Raket (Grip) dan Footwork </div><div class="file-type">Google Docs · .docx</div></div>
+          </div>
+        </a>
+        <div style="margin-top:32px" class="artefak-card" onclick="openModal('perangkat')">
+          <div class="ac-cat">Perangkat Pembelajaran</div>
+          <div class="ac-title">Analisis Perangkat PJOK</div>
+          <div class="ac-desc">Konteks, tujuan, kelebihan, kekurangan, dan kajian teori perangkat pembelajaran PJOK berbasis Kurikulum Merdeka</div>
+          <div class="ac-more">Lihat Analisis Mendalam →</div>
+        </div>
+        <div style="margin-top:32px">
+          <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Dokumentasi Lapangan</div>
+          <div class="foto-grid" style="grid-template-columns:1fr 1fr">
+            <div class="foto-item"><a href="https://drive.google.com/file/d/1RLLPJ0cdY_p94a54kbtLKJgw0Ff_qQI1/view?usp=sharing" target="_blank"><img src="https://drive.google.com/uc?export=view&id=1RLLPJ0cdY_p94a54kbtLKJgw0Ff_qQI1" data-alt-src="https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1RLLPJ0cdY_p94a54kbtLKJgw0Ff_qQI1" alt="Foto PPL 1" onerror="this.src=this.dataset.altSrc;this.dataset.altSrc='';" style="width:100%; height:100%; object-fit:cover; display:block;"></a></div>
+            <div class="foto-item"><a href="https://drive.google.com/file/d/1ej9ct-DJiihUhCkkeWzGoPkMMebbCa21/view?usp=sharing" target="_blank"><img src="https://drive.google.com/uc?export=view&id=1ej9ct-DJiihUhCkkeWzGoPkMMebbCa21" data-alt-src="https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1ej9ct-DJiihUhCkkeWzGoPkMMebbCa21" alt="Foto PPL 2" onerror="this.src=this.dataset.altSrc;this.dataset.altSrc='';" style="width:100%; height:100%; object-fit:cover; display:block;"></a></div>
+            <div class="foto-item"><a href="https://drive.google.com/file/d/1wIcDJf4wzc4KCL5Ps-UeoWYGQj7nU_np/view?usp=sharing" target="_blank"><img src="https://drive.google.com/uc?export=view&id=1wIcDJf4wzc4KCL5Ps-UeoWYGQj7nU_np" data-alt-src="https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1wIcDJf4wzc4KCL5Ps-UeoWYGQj7nU_np" alt="Foto PPL 3" onerror="this.src=this.dataset.altSrc;this.dataset.altSrc='';" style="width:100%; height:100%; object-fit:cover; display:block;"></a></div>
+            <div class="foto-item"><a href="https://drive.google.com/file/d/1L4uNLOgHMcACE0Oe1XtQHw6g5uWxGuEt/view?usp=sharing" target="_blank"><img src="https://drive.google.com/uc?export=view&id=1L4uNLOgHMcACE0Oe1XtQHw6g5uWxGuEt" data-alt-src="https://drive.google.com/thumbnail?authuser=0&sz=w600&id=1L4uNLOgHMcACE0Oe1XtQHw6g5uWxGuEt" alt="Foto PPL 4" onerror="this.src=this.dataset.altSrc;this.dataset.altSrc='';" style="width:100%; height:100%; object-fit:cover; display:block;"></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: MODEL GURU & PRINSIP STEM                              -->
+<!-- ============================================================ -->
+<div class="page" id="page-model">
+
+  <div class="pg-head">
+    <div class="pg-num rv">05</div>
+
+    <div class="pg-meta rv d1">
+      <div class="pg-eye">Visi Profesional</div>
+
+      <h1 class="pg-title">
+        Model Guru yang Dituju<br>
+        <span style="font-size:.6em;font-style:italic;color:var(--gold2)">
+          & Prinsip Guru PJOK Modern
+        </span>
+      </h1>
+
+      <div class="pg-line"></div>
+    </div>
+  </div>
+
+  <div class="cw">
+
+    <!-- Misi -->
+    <div class="misi-card rv">
+      <p>
+        Menjadi pendidik PJOK yang mampu menciptakan pembelajaran aktif,
+        inovatif, dan bermakna melalui pendekatan pembelajaran modern,
+        sehingga peserta didik tidak hanya berkembang dalam keterampilan gerak,
+        tetapi juga dalam karakter, sportivitas, disiplin, dan kemampuan berpikir kritis.
+      </p>
+    </div>
+
+    <!-- Pendekatan -->
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px"
+      class="rv">
+      Pendekatan Pembelajaran PJOK
+    </div>
+
+    <div class="stem-grid rv">
+
+      <div class="stem-card">
+        <div class="stem-letter">A</div>
+        <div class="stem-abbr">A</div>
+        <div class="stem-word">Active Learning</div>
+
+        <div class="stem-desc">
+          Menciptakan pembelajaran yang melibatkan peserta didik secara aktif
+          melalui praktik, permainan, dan pengalaman langsung.
+        </div>
+      </div>
+
+      <div class="stem-card rv d1">
+        <div class="stem-letter">C</div>
+        <div class="stem-abbr">C</div>
+        <div class="stem-word">Collaborative</div>
+
+        <div class="stem-desc">
+          Mengembangkan kemampuan kerja sama, komunikasi, dan sportivitas
+          melalui aktivitas kelompok dan permainan tim.
+        </div>
+      </div>
+
+      <div class="stem-card rv d2">
+        <div class="stem-letter">I</div>
+        <div class="stem-abbr">I</div>
+        <div class="stem-word">Innovative</div>
+
+        <div class="stem-desc">
+          Memanfaatkan media pembelajaran, video analisis, dan metode kreatif
+          agar pembelajaran lebih menarik dan mudah dipahami.
+        </div>
+      </div>
+
+      <div class="stem-card rv d3">
+        <div class="stem-letter">R</div>
+        <div class="stem-abbr">R</div>
+        <div class="stem-word">Reflective</div>
+
+        <div class="stem-desc">
+          Melakukan evaluasi dan refleksi pembelajaran untuk meningkatkan kualitas
+          proses belajar dan perkembangan peserta didik.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Video -->
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:32px 0 16px"
+      class="rv">
+      Video Pembelajaran & Inspirasi Guru
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"
+      class="rv">
+
+      <div>
+        <div class="vid-label">Pembelajaran PJOK — Part 1</div>
+
+        <div class="vid-wrap">
+          <a href="https://youtu.be/zmXHeLeTeJg" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+            <img src="https://img.youtube.com/vi/zmXHeLeTeJg/hqdefault.jpg" alt="Pembelajaran PJOK 1" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="vid-label">Pembelajaran PJOK — Part 2</div>
+
+        <div class="vid-wrap">
+          <a href="https://youtu.be/b_9TEGAaxLQ" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+            <img src="https://img.youtube.com/vi/b_9TEGAaxLQ/hqdefault.jpg" alt="Pembelajaran PJOK 2" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="vid-label">Pembelajaran PJOK — Part 3</div>
+
+        <div class="vid-wrap">
+          <a href="https://youtu.be/GS8dUPT_VZ8" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+            <img src="https://img.youtube.com/vi/GS8dUPT_VZ8/hqdefault.jpg" alt="Pembelajaran PJOK 3" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="vid-label">Pembelajaran PJOK — Part 4</div>
+
+        <div class="vid-wrap">
+          <a href="https://youtu.be/E7l0DlzIdV0" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+            <img src="https://img.youtube.com/vi/E7l0DlzIdV0/hqdefault.jpg" alt="Pembelajaran PJOK 4" style="width:100%; height:100%; object-fit:cover; display:block;">
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Kompetensi -->
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:48px 0 16px"
+      class="rv">
+      4 Kompetensi Guru Profesional
+    </div>
+
+    <div class="komp-grid rv">
+
+      <div class="komp-card">
+        <div class="komp-n">01</div>
+
+        <div class="komp-t">Pedagogik</div>
+
+        <div class="komp-d">
+          Merancang pembelajaran PJOK yang aktif, menyenangkan,
+          dan berpusat pada peserta didik dengan pendekatan diferensiasi.
+        </div>
+      </div>
+
+      <div class="komp-card rv d1">
+        <div class="komp-n">02</div>
+
+        <div class="komp-t">Kepribadian</div>
+
+        <div class="komp-d">
+          Menjadi teladan dalam sikap disiplin, sportivitas,
+          tanggung jawab, dan semangat belajar sepanjang hayat.
+        </div>
+      </div>
+
+      <div class="komp-card rv d2">
+        <div class="komp-n">03</div>
+
+        <div class="komp-t">Sosial</div>
+
+        <div class="komp-d">
+          Membangun komunikasi yang positif dan kolaboratif
+          dengan peserta didik, rekan sejawat, dan lingkungan sekolah.
+        </div>
+      </div>
+
+      <div class="komp-card rv d3">
+        <div class="komp-n">04</div>
+
+        <div class="komp-t">Profesional</div>
+
+        <div class="komp-d">
+          Menguasai materi PJOK secara mendalam serta terus
+          mengembangkan kompetensi melalui refleksi dan inovasi pembelajaran.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Karakter -->
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px"
+      class="rv">
+      Karakter yang Dibangun
+    </div>
+
+    <div class="tag-row rv">
+      <div class="vtag">Sportif</div>
+      <div class="vtag">Disiplin</div>
+      <div class="vtag">Kolaboratif</div>
+      <div class="vtag">Inovatif</div>
+      <div class="vtag">Adaptif</div>
+      <div class="vtag">Reflektif</div>
+      <div class="vtag">Empatik</div>
+      <div class="vtag">Lifelong Learner</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+  </footer>
+
+</div>
+<!-- ============================================================ -->
+<!-- PAGE: INSTRUMEN PENILAIAN                                     -->
+<!-- ============================================================ -->
+<div class="page" id="page-instrumen">
+
+  <div class="pg-head">
+    <div class="pg-num rv">06</div>
+
+    <div class="pg-meta rv d1">
+      <div class="pg-eye">Asesmen Peserta Didik</div>
+      <h1 class="pg-title">Instrumen Penilaian</h1>
+      <div class="pg-line"></div>
+    </div>
+  </div>
+
+  <div class="cw">
+
+    <div class="instr-tabs rv">
+      <button class="itab on" onclick="switchTab('keterampilan',this)">Keterampilan</button>
+      <button class="itab" onclick="switchTab('pengetahuan',this)">Pengetahuan</button>
+      <button class="itab" onclick="switchTab('sikap',this)">Sikap</button>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- KETERAMPILAN                                           -->
+    <!-- ====================================================== -->
+    <div class="itab-body on" id="tab-keterampilan">
+
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px">
+        Instrumen Penilaian Keterampilan
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Tes Praktik Servis</h4>
+          <p>
+            Penilaian teknik dasar servis pendek dan servis panjang bulutangkis
+            melalui target zona untuk mengukur akurasi dan ketepatan pukulan.
+          </p>
+        </div>
+
+        <div class="instr-badge">Praktik</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Observasi Keterampilan Gerak</h4>
+          <p>
+            Pengamatan pelaksanaan teknik servis, posisi tubuh,
+            koordinasi gerak, dan ketepatan pukulan selama pembelajaran berlangsung.
+          </p>
+        </div>
+
+        <div class="instr-badge">Observasi</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>LKPD Keterampilan</h4>
+          <p>
+            Lembar Kerja Peserta Didik berbasis analisis teknik servis
+            dan evaluasi hasil praktik pembelajaran bulutangkis.
+          </p>
+        </div>
+
+        <div class="instr-badge">LKPD</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Rubrik Penilaian Teknik</h4>
+          <p>
+            Rubrik penilaian deskriptif untuk menilai kualitas gerakan,
+            ketepatan teknik, dan konsistensi servis peserta didik.
+          </p>
+        </div>
+
+        <div class="instr-badge">Rubrik</div>
+      </div>
+
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- PENGETAHUAN                                            -->
+    <!-- ====================================================== -->
+    <div class="itab-body" id="tab-pengetahuan">
+
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px">
+        Instrumen Penilaian Pengetahuan
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Tes Diagnostik Awal</h4>
+
+          <p>
+            Google Forms untuk mengukur pemahaman awal peserta didik
+            mengenai teknik dasar dan peraturan permainan bulutangkis.
+          </p>
+        </div>
+
+        <div class="instr-badge">Diagnostik</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Tes Formatif Tertulis</h4>
+
+          <p>
+            Tes pilihan ganda dan uraian mengenai teknik servis,
+            aturan permainan, serta strategi dasar dalam bulutangkis.
+          </p>
+        </div>
+
+        <div class="instr-badge">Formatif</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>LKPD Analisis Teknik</h4>
+
+          <p>
+            Peserta didik menganalisis kesalahan dan perbaikan teknik servis
+            melalui pengamatan video maupun demonstrasi langsung.
+          </p>
+        </div>
+
+        <div class="instr-badge">LKPD</div>
+      </div>
+
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- SIKAP                                                  -->
+    <!-- ====================================================== -->
+    <div class="itab-body" id="tab-sikap">
+
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px">
+        Instrumen Penilaian Sikap
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Lembar Observasi Sikap</h4>
+
+          <p>
+            Pengamatan sikap disiplin, sportivitas, kerja sama,
+            tanggung jawab, dan percaya diri selama pembelajaran berlangsung.
+          </p>
+        </div>
+
+        <div class="instr-badge">Observasi</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Jurnal Perkembangan Sikap</h4>
+
+          <p>
+            Catatan perkembangan perilaku peserta didik selama proses
+            pembelajaran dan aktivitas praktik bulutangkis.
+          </p>
+        </div>
+
+        <div class="instr-badge">Jurnal</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Penilaian Antarteman</h4>
+
+          <p>
+            Peserta didik saling memberikan penilaian terhadap
+            kerja sama, komunikasi, dan sportivitas dalam kegiatan kelompok.
+          </p>
+        </div>
+
+        <div class="instr-badge">Peer</div>
+      </div>
+
+      <div class="instr-item rv">
+        <div class="instr-item-left">
+          <h4>Penilaian Diri</h4>
+
+          <p>
+            Refleksi diri peserta didik mengenai perkembangan kemampuan,
+            sikap, dan partisipasi selama pembelajaran PJOK.
+          </p>
+        </div>
+
+        <div class="instr-badge">Self</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+
+    <div class="foot-top">
+      <div class="foot-brand">
+        Asmo Tegar Nada Satria, S.Pd
+        <small>E-Portfolio Mahasiswa PPG</small>
+      </div>
+
+      <div class="foot-q">
+        "Pendidikan bukan hanya tentang transfer ilmu,
+        tetapi juga proses membentuk karakter dan semangat belajar sepanjang hayat."
+        <cite>— Asmo Tegar Nada Satria, S.Pd</cite>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p>PPG Kemendikdasmen · <a href="https://www.google.com/maps/search/?api=1&query=Universitas+Insan+Budi+Utomo+Malang" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">Universitas Insan Budi Utomo</a> · 2026</p>
+      <span><a href="https://www.google.com/maps/search/?api=1&query=Jalan+Bromo+No.16,+Kauman,+Klojen,+Kota+Malang,+Jawa+Timur+65119,+Indonesia" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;">SMA Laboratorium UM</a></span>
+    </div>
+
+  </footer>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- MODAL                                                         -->
+<!-- ============================================================ -->
+<div class="overlay" id="overlay">
+
+  <div class="modal" id="modalBox">
+
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-head">
+      <div class="modal-cat" id="mCat"></div>
+      <div class="modal-title" id="mTitle"></div>
+    </div>
+
+    <div class="modal-body" id="mBody"></div>
+
+  </div>
+</div>
+
+<script>
+
+// ---- Page navigation ----
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+
+  document.querySelectorAll('.nav-menu a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.page===id);
+  });
+
+  window.scrollTo(0,0);
+  setTimeout(runReveal,80);
+}
+
+// ---- Nav scroll ----
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('solid',window.scrollY>20);
+});
+
+// ---- Reveal animation ----
+function runReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)e.target.classList.add('v')
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+
+  document.querySelectorAll('.page.active .rv:not(.v)').forEach(el=>obs.observe(el));
+}
+
+runReveal();
+
+// ---- Mobile nav ----
+function toggleMob(){
+  document.getElementById('mobNav').style.display=
+  document.getElementById('mobNav').style.display==='none'
+  ?'block':'none'
+}
+
+function closeMob(){
+  document.getElementById('mobNav').style.display='none'
+}
+
+// ---- Tabs ----
+function switchTab(id,btn){
+
+  document.querySelectorAll('.itab-body').forEach(t=>{
+    t.classList.remove('on');
+  });
+
+  document.querySelectorAll('.itab').forEach(b=>{
+    b.classList.remove('on');
+  });
+
+  document.getElementById('tab-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ---- Modal data ----
+const MODALS={
+
+  modul:{
+    cat:'Modul Ajar',
+    title:'Modul Ajar Bulutangkis Kelas XI',
+    konteks:'Modul ajar ini disusun untuk pembelajaran PJOK materi bulutangkis kelas XI SMA Laboratorium UM berdasarkan Kurikulum Merdeka dengan fokus pada teknik servis pendek dan servis panjang.',
+    tujuan:'Memberikan pengalaman belajar yang aktif, kolaboratif, dan bermakna melalui pembelajaran praktik serta penguatan karakter sportivitas peserta didik.',
+    kelebihan:'Pembelajaran dirancang interaktif dengan praktik langsung, asesmen autentik, serta penggunaan target zona untuk meningkatkan akurasi teknik servis.',
+    kekurangan:'Pelaksanaan praktik memerlukan pengelolaan waktu dan kondisi lapangan yang efektif agar seluruh peserta didik memperoleh kesempatan latihan secara maksimal.',
+    teori:'Mengacu pada pendekatan pembelajaran aktif, diferensiasi pembelajaran, serta teori konstruktivisme yang menempatkan peserta didik sebagai pusat proses belajar.'
+  },
+
+  form:{
+    cat:'Form Penilaian',
+    title:'Form Penilaian GP & DPL',
+    konteks:'Instrumen penilaian digunakan oleh Guru Pamong dan Dosen Pembimbing Lapangan untuk mengevaluasi perangkat pembelajaran serta praktik mengajar mahasiswa PPG.',
+    tujuan:'Memberikan umpan balik terhadap kualitas perangkat ajar, proses pembelajaran, dan kompetensi profesional guru.',
+    kelebihan:'Rubrik penilaian sistematis dan mencakup aspek pedagogik, profesional, sosial, serta kepribadian.',
+    kekurangan:'Beberapa indikator memerlukan penyesuaian lebih spesifik sesuai karakteristik pembelajaran PJOK di lapangan.',
+    teori:'Berdasarkan prinsip asesmen autentik, refleksi pembelajaran, dan standar kompetensi guru profesional.'
+  },
+
+  perangkat:{
+    cat:'Perangkat Pembelajaran',
+    title:'Analisis Perangkat PJOK — Bulutangkis',
+    konteks:'Perangkat pembelajaran dikembangkan untuk mendukung pembelajaran teknik dasar bulutangkis melalui modul ajar, LKPD, media pembelajaran, dan asesmen autentik.',
+    tujuan:'Menciptakan proses pembelajaran yang efektif, menyenangkan, dan mampu meningkatkan keterampilan serta karakter peserta didik.',
+    kelebihan:'Perangkat pembelajaran terintegrasi antara teori dan praktik sehingga membantu peserta didik memahami teknik secara lebih konkret.',
+    kekurangan:'Media pembelajaran berbasis video memerlukan perangkat dan koneksi internet yang memadai.',
+    teori:'Pengembangan perangkat mengacu pada Kurikulum Merdeka, pendekatan pembelajaran aktif, dan asesmen autentik dalam PJOK.'
+  }
+
+};
+
+// ---- Modal open ----
+function openModal(key){
+
+  const d=MODALS[key];
+
+  document.getElementById('mCat').textContent=d.cat;
+  document.getElementById('mTitle').textContent=d.title;
+
+  document.getElementById('mBody').innerHTML=`
+
+    <div class="m-sec">
+      <h4>Konteks</h4>
+      <p>${d.konteks}</p>
+    </div>
+
+    <div class="m-div"></div>
+
+    <div class="m-sec">
+      <h4>Tujuan</h4>
+      <p>${d.tujuan}</p>
+    </div>
+
+    <div class="m-div"></div>
+
+    <div class="m-sec">
+      <h4>Kelebihan</h4>
+      <p>${d.kelebihan}</p>
+    </div>
+
+    <div class="m-div"></div>
+
+    <div class="m-sec">
+      <h4>Kekurangan</h4>
+      <p>${d.kekurangan}</p>
+    </div>
+
+    <div class="m-div"></div>
+
+    <div class="m-sec">
+      <h4>Kajian Teori</h4>
+      <p>${d.teori}</p>
+    </div>
+
+  `;
+
+  document.getElementById('overlay').classList.add('on');
+}
+
+// ---- Modal close ----
+function closeModal(){
+  document.getElementById('overlay').classList.remove('on')
+}
+
+// ---- Close modal outside ----
+document.getElementById('overlay').addEventListener('click',function(e){
+  if(e.target===this)closeModal()
+});
+
+</script>
+
+</body>
+</html>
